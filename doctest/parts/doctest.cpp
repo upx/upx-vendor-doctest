@@ -2947,8 +2947,9 @@ namespace {
         void printIntro() {
             if(opt.no_intro == false) {
                 printVersion();
-                s << Color::Cyan << "[doctest] " << Color::None
-                  << "run with \"--" DOCTEST_OPTIONS_PREFIX_DISPLAY "help\" for options\n";
+                if(opt.has_args)
+                    s << Color::Cyan << "[doctest] " << Color::None
+                      << "run with \"--" DOCTEST_OPTIONS_PREFIX_DISPLAY "help\" for options\n";
             }
         }
 
@@ -3468,6 +3469,7 @@ namespace {
 
 Context::Context(int argc, const char* const* argv)
         : p(new detail::ContextState) {
+    p->has_args = false;
     parseArgs(argc, argv, true);
     if(argc)
         p->binary_name = argv[0];
@@ -3490,6 +3492,7 @@ void Context::parseArgs(int argc, const char* const* argv, bool withDefaults) {
     using namespace detail;
 
     // clang-format off
+    if (argc > 0 && argv != nullptr) p->has_args = true;
     parseCommaSepArgs(argc, argv, DOCTEST_CONFIG_OPTIONS_PREFIX "source-file=",        p->filters[0]);
     parseCommaSepArgs(argc, argv, DOCTEST_CONFIG_OPTIONS_PREFIX "sf=",                 p->filters[0]);
     parseCommaSepArgs(argc, argv, DOCTEST_CONFIG_OPTIONS_PREFIX "source-file-exclude=",p->filters[1]);

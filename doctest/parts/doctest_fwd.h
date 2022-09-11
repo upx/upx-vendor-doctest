@@ -904,6 +904,7 @@ struct ContextOptions //!OCLINT too many fields
     bool no_skipped_summary;   // don't print "skipped" in the summary !!! UNDOCUMENTED !!!
     bool no_time_in_output;    // omit any time/timestamps from output !!! UNDOCUMENTED !!!
 
+    bool has_args;         // to print the --help hint
     bool help;             // to print the help
     bool version;          // to print the version
     bool count;            // if only the count of matching tests is to be retrieved
