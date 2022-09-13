@@ -2970,9 +2970,27 @@ namespace {
         }
 
         void printVersion() {
-            if(opt.no_version == false)
-                s << Color::Cyan << "[doctest] " << Color::None << "doctest version is \""
-                  << DOCTEST_VERSION_STR << "\"\n";
+            if(opt.no_version == false) {
+                unsigned long long v = 0;
+                s << Color::Cyan << "[doctest] " << Color::None << "doctest version is "
+                  << DOCTEST_VERSION_STR << "\n";
+                s << Color::Cyan << "[doctest] " << Color::None << "compiler version is ";
+#if DOCTEST_CLANG
+                s << "clang ";
+                v = DOCTEST_CLANG;
+#elif DOCTEST_GCC
+                s << "gcc ";
+                v = DOCTEST_GCC;
+#elif DOCTEST_MSVC
+                s << "msvc ";
+                v = DOCTEST_MSVC;
+#else
+                s << "UNKNOWN ";
+#endif
+                s << (v / 10000000) << "." << (v % 10000000 / 100000) << "." << (v % 100000);
+                s << " (" << (sizeof(void *) * 8) << "-bit)";
+                s << "\n";
+            }
         }
 
         void printIntro() {
