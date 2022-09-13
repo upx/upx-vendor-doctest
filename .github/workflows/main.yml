@@ -42,11 +42,12 @@ jobs:
           mkdir coverage
           lcov -c -d build/ -o coverage/lcov.info --include "*doctest/parts*"
 
-      - name: Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          files: ./coverage/lcov.info
-          fail_ci_if_error: true
+# TODO: need a Codecov account
+#     - name: Codecov
+#       uses: codecov/codecov-action@v2
+#       with:
+#         files: ./coverage/lcov.info
+#         fail_ci_if_error: true
 
   clang-tidy:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
