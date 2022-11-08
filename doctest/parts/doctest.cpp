@@ -1296,7 +1296,7 @@ namespace {
            (isatty(STDOUT_FILENO) == false && getContextOptions()->force_colors == false))
             return;
 
-        auto col = "";
+        const char* col = "[0m";
         // clang-format off
             switch(code) { //!OCLINT missing break in switch statement / unnecessary default statement in covered switch statement
                 case Color::Red:         col = "[0;31m"; break;
@@ -1312,7 +1312,7 @@ namespace {
                 case Color::Bright: // invalid
                 case Color::None:
                 case Color::White:
-                default:                 col = "[0m";
+                default:                 break;
             }
         // clang-format on
         s << "\033" << col;
