@@ -1537,7 +1537,7 @@ namespace {
     // There is no 1-1 mapping between signals and windows exceptions.
     // Windows can easily distinguish between SO and SigSegV,
     // but SigInt, SigTerm, etc are handled differently.
-    SignalDefs signalDefs[] = {
+    const SignalDefs signalDefs[] = {
             {static_cast<DWORD>(EXCEPTION_ILLEGAL_INSTRUCTION),
              "SIGILL - Illegal instruction signal"},
             {static_cast<DWORD>(EXCEPTION_STACK_OVERFLOW), "SIGSEGV - Stack overflow"},
@@ -1682,7 +1682,7 @@ namespace {
         int         id;
         const char* name;
     };
-    SignalDefs signalDefs[] = {{SIGINT, "SIGINT - Terminal interrupt signal"},
+    const SignalDefs signalDefs[] = {{SIGINT, "SIGINT - Terminal interrupt signal"},
                                {SIGILL, "SIGILL - Illegal instruction signal"},
                                {SIGFPE, "SIGFPE - Floating point error signal"},
                                {SIGSEGV, "SIGSEGV - Segmentation violation signal"},
@@ -1700,7 +1700,7 @@ namespace {
         static void handleSignal(int sig) {
             const char* name = "<unknown signal>";
             for(std::size_t i = 0; i < DOCTEST_COUNTOF(signalDefs); ++i) {
-                SignalDefs& def = signalDefs[i];
+                const SignalDefs& def = signalDefs[i];
                 if(sig == def.id) {
                     name = def.name;
                     break;
