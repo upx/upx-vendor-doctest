@@ -313,11 +313,11 @@ DOCTEST_MSVC_SUPPRESS_WARNING(4623) // default constructor was implicitly define
 #define DOCTEST_SYMBOL_EXPORT __declspec(dllexport)
 #define DOCTEST_SYMBOL_IMPORT __declspec(dllimport)
 #else // MSVC
-#define DOCTEST_SYMBOL_EXPORT __attribute__((dllexport))
-#define DOCTEST_SYMBOL_IMPORT __attribute__((dllimport))
+#define DOCTEST_SYMBOL_EXPORT __attribute__((__dllexport__))
+#define DOCTEST_SYMBOL_IMPORT __attribute__((__dllimport__))
 #endif // MSVC
 #else  // _WIN32
-#define DOCTEST_SYMBOL_EXPORT __attribute__((visibility("default")))
+#define DOCTEST_SYMBOL_EXPORT __attribute__((__visibility__("default")))
 #define DOCTEST_SYMBOL_IMPORT
 #endif // _WIN32
 
@@ -352,9 +352,9 @@ DOCTEST_MSVC_SUPPRESS_WARNING(4623) // default constructor was implicitly define
 #define DOCTEST_UNUSED
 #define DOCTEST_ALIGNMENT(x)
 #else
-#define DOCTEST_NOINLINE __attribute__((noinline))
-#define DOCTEST_UNUSED __attribute__((unused))
-#define DOCTEST_ALIGNMENT(x) __attribute__((aligned(x)))
+#define DOCTEST_NOINLINE __attribute__((__noinline__))
+#define DOCTEST_UNUSED __attribute__((__unused__))
+#define DOCTEST_ALIGNMENT(x) __attribute__((__aligned__(x)))
 #endif
 
 #ifdef DOCTEST_CONFIG_NO_CONTRADICTING_INLINE
