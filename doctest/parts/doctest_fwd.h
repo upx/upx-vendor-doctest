@@ -391,7 +391,7 @@ DOCTEST_MSVC_SUPPRESS_WARNING(4623) // default constructor was implicitly define
 
 #ifndef DOCTEST_NO_SANITIZE_INTEGER
 #if DOCTEST_CLANG >= DOCTEST_COMPILER(3, 7, 0)
-#define DOCTEST_NO_SANITIZE_INTEGER __attribute__((no_sanitize("integer")))
+#define DOCTEST_NO_SANITIZE_INTEGER __attribute__((__no_sanitize__("integer")))
 #else
 #define DOCTEST_NO_SANITIZE_INTEGER
 #endif
