@@ -1904,8 +1904,14 @@ namespace detail {
     }
 
     MessageBuilder::~MessageBuilder() {
-        if (!logged)
+        if (!logged) {
+#ifndef DOCTEST_CONFIG_NO_EXCEPTIONS
+            // silence clang-analyzer/clang-tidy bugprone-exception-escape warning
+            try { tlssPop(); } catch(...) { std::terminate(); };
+#else // DOCTEST_CONFIG_NO_EXCEPTIONS
             tlssPop();
+#endif // DOCTEST_CONFIG_NO_EXCEPTIONS
+       }
     }
 
     DOCTEST_DEFINE_INTERFACE(IExceptionTranslator)
