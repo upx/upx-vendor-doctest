@@ -1222,6 +1222,7 @@ namespace detail {
         m_template_id = template_id;
     }
 
+    // NOLINTNEXTLINE(bugprone-copy-constructor-init)
     TestCase::TestCase(const TestCase& other)
             : TestCaseData() {
         *this = other;
