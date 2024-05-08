@@ -1857,6 +1857,7 @@ DOCTEST_CLANG_SUPPRESS_WARNING_POP
 
         void stringify(std::ostream* s) const override { lambda_(s); }
 
+        // NOLINTNEXTLINE(bugprone-exception-escape)
         ~ContextScope() override {
             if (need_to_destroy) {
                 destroy();

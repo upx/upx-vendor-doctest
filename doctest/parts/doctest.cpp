@@ -1494,6 +1494,7 @@ namespace detail {
         g_infoContexts.push_back(this);
     }
 
+    // NOLINTNEXTLINE(bugprone-exception-escape)
     ContextScopeBase::ContextScopeBase(ContextScopeBase&& other) noexcept {
         if (other.need_to_destroy) {
             other.destroy();
