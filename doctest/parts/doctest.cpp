@@ -3834,7 +3834,7 @@ int Context::run() {
             // random_shuffle implementation
             const auto first = &testArray[0];
             for(size_t i = testArray.size() - 1; i > 0; --i) {
-                int idxToSwap = std::rand() % (i + 1);
+                int idxToSwap = std::rand() % (i + 1); // NOLINT(clang-analyzer-security.insecureAPI.rand)
 
                 const auto temp = first[i];
 
